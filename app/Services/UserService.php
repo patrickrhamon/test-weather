@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserService
 {
@@ -20,6 +21,11 @@ class UserService
         throw_if($throw_exception && is_null($user),
         new Exception("User Not Found.", 404));
         return $user;
+    }
+
+    public function findAll(): ?Collection
+    {
+        return $this->model->all();
     }
 
     public function create(array $data): User
