@@ -14,3 +14,7 @@
 <p>[POST]: /api/user = create a user</p>
 <p>[POST]: /api/login = login a user</p>
 <p>[POST] | requered-Token: /api/logout = logout a user</p>
+
+
+
+<p>Inside this project has a Insominia.json with all routes created for this project.</p>
