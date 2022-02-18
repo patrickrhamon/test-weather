@@ -6,10 +6,10 @@
 <p>Run commad: php artisan passport:install --uuids</p>
 
 <p>Routes:</p>
-[GET] / = Default route laravel
-[GET] /info = show PHP Info
-[GET] /api/weather = route return weather by ip (if authenticated save the IP in the user)
-[POST] /api/user = create a user
+<p>[GET] / = Default route laravel</p>
+<p>[GET] /info = show PHP Info</p>
+<p>[GET] /api/weather = route return weather by ip (if authenticated save the IP in the user)</p>
+<p>[POST] /api/user = create a user</p>
 
 
 

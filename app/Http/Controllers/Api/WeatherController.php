@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\SaveLogEvent;
+use App\Extras\Enums\TypeWeatherEnum;
 use App\Services\External\WeatherService;
 use App\Services\UserService;
 
@@ -27,6 +29,8 @@ class WeatherController extends BaseController
             $data = ['last_ip' => $ip];
             $this->userService->update($user->id, $data);
         }
+
+        event(new SaveLogEvent($weather, TypeWeatherEnum::HTTP, $user));
 
         return $this->sendResponse($weather, 'Weather');
     }
