@@ -39,14 +39,9 @@ class UserController extends BaseController
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [ 
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255',
             'password' => 'required',
-        ],[
-            'email.required' => 'O e-mail deve ser informado.',
-            'email.email' => 'O formato do e-mail é inválido.',
-            'email.max' => 'O tamanho do e-mail é inválido.',
-            'password.required' => 'A senha deve ser informada.',
         ]);
 
         if ($validator->fails()) {
@@ -59,16 +54,27 @@ class UserController extends BaseController
             $success['token'] = $user->createToken('weather')->accessToken;
             $success['nome'] = $user->nome;
 
-            return $this->sendResponse($success, 'Usuário logado com sucesso.');
+            return $this->sendResponse($success, 'Authenticated User.');
         } else {
             return $this->sendError('Unauthorized.', ['error' => 'Unauthorized'], 401);
         }
     }
 
-    public function logout (Request $request) {
+    public function logout(Request $request)
+    {
         $token = $request->user()->token();
         $token->revoke();
         $response = ['message' => 'You have been successfully logged out!'];
         return response($response, 200);
+    }
+
+    public function weathers()
+    {
+        $user = auth()->user();
+        if ($user) {
+            return $this->sendResponse($user->logEvents, "User's Events.");
+        }
+
+        return $this->sendError('Not Found.', ['error'=>'User not found'], 404);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Extras\Enums\TypeWeatherEnum;
 use App\Mail\SendWeatherLastIP;
 use App\Services\UserService;
 use Illuminate\Console\Command;
@@ -45,7 +46,7 @@ class SendMailCommand extends Command
         $users = $this->user_service->findAll();
 
         foreach ($users as $user) {
-            Mail::send(new SendWeatherLastIP($user->id));
+            Mail::send(new SendWeatherLastIP($user->id, TypeWeatherEnum::COMMAND));
         }
     }
 }

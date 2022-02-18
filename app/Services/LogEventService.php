@@ -28,27 +28,23 @@ class LogEventService
         return $this->model->all();
     }
 
-    public function create(array $data): LogEvent
+    public function create(array $data): ?LogEvent
     {
         try {
             return $this->model->create($data);
         } catch (Exception $ex) {
-            return response()->json([
-                "message" => "Error: {$ex->getMessage()}"
-            ], 400);
+            throw new Exception("Error: {$ex->getMessage()}", 400);
         }
     }
 
-    public function update(int $user_id, array $data): LogEvent
+    public function update(int $user_id, array $data): ?LogEvent
     {
         try {
             $user = $this->findById($user_id);
             $user->update($data);
             return $user;
         } catch (Exception $ex) {
-            return response()->json([
-                "message" => "Error: {$ex->getMessage()}"
-            ], 400);
+            throw new Exception("Error: {$ex->getMessage()}", 400);
         }
     }
 }

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/user',[UserController::class, 'create']);
     Route::post('/login',[UserController::class, 'login']);
     Route::post('/logout',[UserController::class, 'logout']);
+    Route::get('/user/weathers', [UserController::class, 'weathers']);
 # }
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

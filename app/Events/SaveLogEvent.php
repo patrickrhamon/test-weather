@@ -25,7 +25,7 @@ class SaveLogEvent
      * @return void
      */
     public function __construct(
-        string $weather,
+        array $weather,
         int $type,
         ?User $user = null)
     {

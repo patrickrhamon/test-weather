@@ -26,9 +26,9 @@ class SaveLogListener
      */
     public function handle($event)
     {
-        $data['user'] = $event->user->id ?? null;
+        $data['user_id'] = $event->user->id ?? null;
         $data['type'] = $event->type;
-        $data['weather'] = $event->weather;
+        $data['weather'] = json_encode($event->weather);
 
         $this->log_event_service->create($data);
     }

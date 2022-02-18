@@ -9,6 +9,8 @@ class LogEvent extends Model
 {
     use HasFactory;
 
+    protected $table = 'logs_events';
+
     /**
      * The attributes that are mass assignable.
      *
